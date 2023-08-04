@@ -19,11 +19,12 @@ Cuido de uma gatinha muito trabalhosa chamada erva daninha 🐈 <br>
 * Estagiário de desenvolvimento de software <br>
 Estágio out de 2021 - jan de 2023 (1 ano 4 meses) <br>
 São Paulo, Brasil <br>
-Competências: Java · Método criativo de solução de problemas · Git
+Competências: Java · Método criativo de solução de problemas · Git <br>
 
 *Intern - Data Engineering | AWS Training <br>
 Compass UOL · Estágio ago de 2023 - o momento · 1 mês ago  <br>
-Passo Fundo, Rio Grande do Sul, Brasil · Remota
+Passo Fundo, Rio Grande do Sul, Brasil · Remota <br>
+Competências: Python · aws · Computação em nuvem · SQL · Git
 
 <h2>Conhecimentos técnicos 📚 </h2>
 
