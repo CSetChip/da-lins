@@ -21,6 +21,10 @@ Estágio out de 2021 - jan de 2023 (1 ano 4 meses) <br>
 São Paulo, Brasil <br>
 Competências: Java · Método criativo de solução de problemas · Git
 
+*Intern - Data Engineering | AWS Training <br>
+Compass UOL · Estágio ago de 2023 - o momento · 1 mês ago  <br>
+Passo Fundo, Rio Grande do Sul, Brasil · Remota
+
 <h2>Conhecimentos técnicos 📚 </h2>
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
