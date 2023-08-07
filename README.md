@@ -7,7 +7,7 @@
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eduarda-lins-118540176/)
 
 Eduarda Lins 🤓 <br>
-Resido atualmente em Monteiro PB, mas parte do meu coração sempre estará em Pombal PB onde moram minha mãe Diana e meus dois       irmãos Alex e Gabriel, essas pessoas são as luzes da minha vida. 💕 <br>
+Resido atualmente em Monteiro PB, mas parte do meu coração sempre estará em Pombal PB onde moram minha mãe Diana e meus dois irmãos Alex e Gabriel, essas pessoas são as luzes da minha vida. 💕 <br>
 Apaixonada por tecnologia, jardinagem e artesanato 🪴  <br>
 Cuido de uma gatinha muito trabalhosa chamada erva daninha 🐈 <br>
 
@@ -25,6 +25,11 @@ Competências: Java · Método criativo de solução de problemas · Git <br>
 Compass UOL · Estágio ago de 2023 - o momento · 1 mês ago  <br>
 Passo Fundo, Rio Grande do Sul, Brasil · Remota <br>
 Competências: Python · aws · Computação em nuvem · SQL · Git
+
+<h2>Experiência acadêmica 💻📚 </h2>
+* Projeto de Extensão Contínuo - Ferramentas para o Ensino Remoto
+Campus do projeto: CAMPUS-MT
+Área do Conhecimento: CIÊNCIA DA INFORMAÇÃO (CIÊNCIAS SOCIAIS APLICADAS)
 
 <h2>Conhecimentos técnicos 📚 </h2>
 
