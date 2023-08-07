@@ -27,8 +27,8 @@ Passo Fundo, Rio Grande do Sul, Brasil · Remota <br>
 Competências: Python · aws · Computação em nuvem · SQL · Git
 
 <h2>Experiência acadêmica 💻📚 </h2>
-* Projeto de Extensão Contínuo - Ferramentas para o Ensino Remoto
-Campus do projeto: CAMPUS-MT
+* Projeto de Extensão Contínuo - Ferramentas para o Ensino Remoto  <br>
+Campus do projeto: CAMPUS-MT  <br>
 Área do Conhecimento: CIÊNCIA DA INFORMAÇÃO (CIÊNCIAS SOCIAIS APLICADAS)
 
 <h2>Conhecimentos técnicos 📚 </h2>
