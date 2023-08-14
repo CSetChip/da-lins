@@ -1,37 +1,38 @@
-<h1> Olá, bem-vindo(a) ao meu repositório de estudos da trilha de D&A 🎓 </h1>
-  
-<h3>⚠️ Development ⚠️</h3>
+# Olá, bem-vindo(a) ao meu repositório de estudos da trilha de D&A 🎓
 
-<h2>Quem sou eu?</h2>
+## ⚠️ Development ⚠️
+
+### Quem sou eu?
 
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eduarda-lins-118540176/)
 
-Eduarda Lins 🤓 <br>
-Resido atualmente em Monteiro PB, mas parte do meu coração sempre estará em Pombal PB onde moram minha mãe Diana e meus dois irmãos Alex e Gabriel, essas pessoas são as luzes da minha vida. 💕 <br>
-Apaixonada por tecnologia, jardinagem e artesanato 🪴  <br>
-Cuido de uma gatinha muito trabalhosa chamada erva daninha 🐈 <br>
+Meu nome é Eduarda Lins 🤓, atualmente residindo em Monteiro PB. Parte do meu coração sempre estará em Pombal PB, onde moram minha mãe Diana e meus dois irmãos Alex e Gabriel – essas pessoas são as luzes da minha vida. 💕
+Sou apaixonada por tecnologia, jardinagem e artesanato 🪴. Também cuido de uma gatinha muito travessa chamada Erva Daninha 🐈.
 
-<h2>Formação 🖥️ 🔧 </h2>
-* Formada em técnico em manutenção e suporte de computadores. <br>
-* Estudante de análise e desenvolvimento de sistemas no IFPB - Campus Monteiro PB, atualmente no 4° período.
+## Formação 🖥️ 🔧
 
-<h2>Experiência Profissional 💻</h2>
-* Estagiário de desenvolvimento de software <br>
-Estágio out de 2021 - jan de 2023 (1 ano 4 meses) <br>
-São Paulo, Brasil <br>
-Competências: Java · Método criativo de solução de problemas · Git <br>
+- Técnica em Manutenção e Suporte de Computadores.
+- Estudante de Análise e Desenvolvimento de Sistemas no IFPB - Campus Monteiro PB, atualmente no 4° período.
 
-*Intern - Data Engineering | AWS Training <br>
-Compass UOL · Estágio ago de 2023 - o momento · 1 mês ago  <br>
-Passo Fundo, Rio Grande do Sul, Brasil · Remota <br>
-Competências: Python · aws · Computação em nuvem · SQL · Git
+## Experiência Profissional 💻
 
-<h2>Experiência acadêmica 💻📚 </h2>
-* Projeto de Extensão Contínuo - Ferramentas para o Ensino Remoto  <br>
-Campus do projeto: CAMPUS-MT  <br>
-Área do Conhecimento: CIÊNCIA DA INFORMAÇÃO (CIÊNCIAS SOCIAIS APLICADAS)
+- Estagiária de Desenvolvimento de Software.
+  - Período: Out 2021 - Jan 2023 (1 ano e 4 meses).
+  - Local: São Paulo, Brasil.
+  - Competências: Java, Métodos criativos de solução de problemas, Git.
 
-<h2>Conhecimentos técnicos 📚 </h2>
+- Intern - Data Engineering | AWS Training.
+  - Estágio desde Ago 2023 (1 mês até o momento).
+  - Local: Passo Fundo, Rio Grande do Sul, Brasil (Trabalho remoto).
+  - Competências: Python, AWS, Computação em nuvem, SQL, Git.
+
+## Experiência Acadêmica 💻📚
+
+- Projeto de Extensão Contínuo - Ferramentas para o Ensino Remoto.
+  - Campus do projeto: CAMPUS-MT.
+  - Área do Conhecimento: Ciência da Informação (Ciências Sociais Aplicadas).
+
+## Conhecimentos Técnicos 📚
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
@@ -42,29 +43,44 @@ Campus do projeto: CAMPUS-MT  <br>
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-003B57?style=for-the-badge&logo=amazon-dynamodb&logoColor=white)
 
-<br>
-
-* Git
-* Secure Product Lifecycle 101
-* Mocks em Java
-* Swagger
-* UML
-* Spring Boot API REST
-* Formação Java e Orientação a Objetos
-* SOLID com Java
-* Git e Github
-* Fundamentos Quality Assurance
-* SQL
-* Kanban
-* Linux
-* Maven: Gerenciamento de dependências e build de aplicações Java
-* Scrum
-* Marketing Digital
-
-<br>
+- Git
+- Secure Product Lifecycle 101
+- Mocks em Java
+- Swagger
+- UML
+- Spring Boot API REST
+- Formação Java e Orientação a Objetos
+- SOLID com Java
+- Git e Github
+- Fundamentos Quality Assurance
+- SQL
+- Kanban
+- Linux
+- Maven: Gerenciamento de dependências e build de aplicações Java
+- Scrum
+- Marketing Digital
 
 ✉️📄 Todas as certificações dos conhecimentos especificados aqui estão presentes no meu perfil do LinkedIn ✉️📄
 
-<h2>💖 Agradecimento 🥰 </h2>
+# 💻📚 Trilha De Estudos Compass.UOL 💻📚
 
-Muito obrigado por tirar um tempo para ler esse material que foi criado com todo carinho para você me conhecer um pouco melhor 💖
+## Qual o objetivo da trilha?
+
+A trilha de D&A-AWS tem como objetivo auxiliar o estagiário a compreender as diversas tecnologias e metodologias empregadas em projetos de dados, utilizando os serviços de nuvem da AWS como plataforma.
+
+## Sprints:
+
+- Sprints 1 - Git/Github e Linux (02/08/2023 - 16/08/2023)
+- Sprints 2 - SQL e Big Data Fundamental 3.0 (16/08/2023 - 30/08/2023)
+- Sprints 3 - Python 3 I (30/08/2023 - 13/09/2023)
+- Sprints 4 - Programação Funcional, Python 3, Docker e Estatística Descritiva Com Python (13/09/2023 - 27/09/2023)
+- Sprints 5 - AWS Skill Builder (27/09/2023 - 11/10/2023)
+- Sprints 6 - AWS Skill Builder e AWS Partner (11/10/2023 - 25/10/2023)
+- Sprints 7 - Learn By Example: Hadoop, MapReduce para problemas de Big Data e Formação Spark com Pyspark (25/10/2023 - 08/11/2023)
+- Sprints 8 - AWS - Tutoriais Técnicos - Analytics (08/11/2023 - 22/11/2023)
+- Sprints 9 - Atividade Prática (22/11/2023 - 06/12/2023)
+- Sprints 10 - Introdução completa ao AWS QuickSight e Workshop de QuickSight para Autores (06/12/2023 - 20/12/2023)
+
+## 💖 Agradecimento 🥰
+
+Agradeço por dedicar seu tempo para explorar meu repositório Git. Espero que tenha gostado do que viu até agora. Se tiver algum feedback, sugestão ou quiser trocar ideias, estou totalmente aberta a isso. Afinal, é assim que crescemos como comunidade!
