@@ -1,0 +1,23 @@
+-- Exercicios ########################################################################
+
+-- (Exercicio 1) Filtro com condição única
+-- Liste os emails dos clientes da nossa base que moram no estado de Santa Catarina
+
+select email from sales.customers c 
+where c.state = 'SC';
+
+-- (Exercicio 2) Filtro com mais de uma condição
+-- Liste os emails dos clientes da nossa base que moram no estado de Santa Catarina
+-- ou Mato Grosso do Sul
+
+select email from sales.customers c 
+where c.state = 'SC' or c.state = 'MG';
+
+-- (Exercicio 3) Filtro de condição com data
+-- Liste os emails dos clientes da nossa base que moram no estado de Santa Catarina 
+-- ou Mato Grosso do Sul e que tem mais de 30 anos
+
+select email from sales.customers c 
+where (c.state = 'SC' or c.state = 'MG') and  c.birth_date < '19911228';
+
+
