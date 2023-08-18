@@ -1,0 +1,13 @@
+-- Exercicios ########################################################################
+
+-- (Exercicio 1) Ordenação de valores numéricos
+-- Liste produtos da tabela products na ordem crescente com base no preço
+
+select * from sales.products p 
+order by p.price;
+
+-- (Exercicio 2) Ordenação de texto
+-- Liste os estados distintos da tabela customers na ordem crescente
+
+select distinct state from sales.customers c 
+order by c.state;
