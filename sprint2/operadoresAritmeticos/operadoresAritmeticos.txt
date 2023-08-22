@@ -1,0 +1,24 @@
+-- Exercicios ########################################################################
+
+-- (Exercicio 1) Criação de coluna calculada
+-- Crie uma coluna contendo a idade do cliente da tabela sales.customers
+
+select email, birth_date, ((current_date - birth_date) / 365) as "idade do cliente"
+from sales.customers;
+
+
+-- (Exercicio 2) Utilização da coluna calculada nas queries
+-- Liste os 10 clientes mais novos da tabela customers
+
+select email, ((current_date - birth_date)/365) as idade_do_cliente
+from sales.customers c 
+order by idade_do_cliente
+limit 10;
+
+-- (Exercicio 3) Criação de coluna calculada com strings 
+-- Crie a coluna "nome_completo" contendo o nome completo do cliente
+
+select first_name || ' ' || last_name 
+from sales.customers;
+
+
