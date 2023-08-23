@@ -1,0 +1,24 @@
+-- Exercicios ########################################################################
+
+-- (Exercicio 1) Contagem agrupada de uma coluna
+-- Calcule o nº de clientes da tabela customers por estado
+
+select state, count(*) as num_clientes
+from sales.customers
+group by state
+order by clientes desc;
+
+-- (Exercicio 2) Contagem agrupada de várias colunas
+-- Calcule o nº de clientes por estado e status profissional 
+
+select state, professional_status , count(*) as num_clientes
+from sales.customers
+group by state, professional_status 
+order by state ,num_clientes desc;
+
+-- (Exercicio 3) Seleção de valores distintos
+-- Selecione os estados distintos na tabela customers utilizando o group by
+
+select state from sales.customers 
+group by state 
+
