@@ -1,0 +1,38 @@
+-- EXERCÍCIOS ########################################################################
+
+-- (EXERCÍCIO 1) Identifique qual é o status profissional mais frequente nos clientes 
+-- que compraram automóveis no site
+
+select clientes.professional_status, count(funil.paid_date) as compras
+from sales.funnel funil
+left join sales.customers clientes
+on clientes.customer_id = funil.customer_id
+group by clientes.professional_status  
+order by compras desc;
+
+-- (EXERCÍCIO 2) Identifique qual é o gênero mais frequente nos clientes que compraram
+-- automóveis no site. Obs: Utilizar a tabela temp_tables.ibge_genders
+
+select genero.gender,
+	count(funil.paid_date)
+from sales.funnel funil
+left join sales.customers clientes
+	on funil.customer_id  = clientes.customer_id
+left join temp_tables.ibge_genders genero
+	on lower(clientes.first_name) = genero.first_name  
+group by genero.gender;
+
+
+-- (EXERCÍCIO 3) Identifique de quais regiões são os clientes que mais visitam o site
+-- Obs: Utilizar a tabela temp_tables.regions
+
+select reg.region, count(funil.visit_page_date) visitas
+from sales.funnel funil
+left join sales.customers cus
+	on funil.customer_id = cus.customer_id 
+left join temp_tables.regions reg
+	on lower(cus.state) = lower(reg.state) 
+	and lower(cus.city) = lower(reg.city ) 
+group by reg.region
+order by visitas desc;
+
