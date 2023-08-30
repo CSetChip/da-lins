@@ -1,0 +1,371 @@
+-- Exercício D&A 2/10 
+
+ 
+
+-- Exercício de programação 1: E1 
+
+SELECT * from livro  
+
+WHERE publicacao > date('2015-01-01') 
+
+order by cod; 
+
+ 
+-- Exercício de programação 2: E2 
+
+SELECT titulo, valor  from livro  
+
+order by valor DESC  
+
+LIMIT 10; 
+
+ 
+-- Exercício de programação 3: E3 
+
+SELECT COUNT(*) as quantidade,  
+
+	editora.nome , 
+
+	ende.estado, 
+
+	ende.cidade 
+
+FROM livro liv 
+
+inner JOIN  editora 
+
+	ON  editora.codeditora = liv.editora  
+
+LEFT JOIN endereco ende 
+
+	ON editora.endereco  = ende.codendereco  
+
+GROUP BY editora.codeditora 
+
+ORDER BY quantidade DESC 
+
+LIMIT 5; 
+
+ 
+-- Exercício de programação 4: E4 
+
+SELECT a.nome, 
+
+    a.codautor, 
+
+	a.nascimento, 
+
+	COUNT(livro.cod) as quantidade 
+
+from autor a  
+
+left join livro  
+
+	on a .codautor = livro.autor  
+
+GROUP by a.codautor,  a.nome, a.nascimento 
+
+ORDER BY a.nome; 
+
+
+-- Exercício de programação 5: E5 
+
+SELECT DISTINCT a.nome   
+
+from autor a 
+
+left join livro 
+
+	on a.codautor = livro.autor  
+
+left join editora  
+
+	on livro.editora = editora.codeditora 
+
+left join endereco 
+
+	on editora.endereco = endereco.codendereco 
+
+where endereco.estado not in('PARANÁ') 
+
+order by a.nome; 
+
+
+-- Exercício de programação 6: E6 
+
+SELECT a.codautor, 
+
+	a.nome, 
+
+	COUNT(livro.cod) as quantidade_publicacoes 
+
+from autor a 
+
+left join livro 
+
+	on a.codautor = livro.autor  
+
+GROUP by a.codautor, a.nome 
+
+order by quantidade_publicacoes desc 
+
+limit 1; 
+ 
+
+-- Exercício de programação 7: E7 
+
+SELECT a.nome 
+
+from autor a 
+
+left join livro 
+
+	on a.codautor = livro.autor  
+
+GROUP by a.codautor, a.nome 
+
+HAVING COUNT(livro.cod) = 0; 
+
+
+-- Exercício de programação 8: E8 
+
+with quantidade_vendas as ( 
+
+	SELECT 
+
+    vendedor.cdvdd, 
+
+    COUNT(tbvendas.cdvdd) as quant_vend 
+
+	FROM 
+
+    tbvendas  
+
+	LEFT JOIN 
+
+    tbvendedor vendedor 
+
+    ON vendedor.cdvdd = tbvendas.cdvdd 
+
+	WHERE 
+
+    tbvendas.status = 'Concluído' 
+
+	GROUP BY 
+
+    vendedor.cdvdd 
+
+) 
+
+SELECT vendedor.cdvdd, 
+
+	vendedor.nmvdd  
+
+from tbvendedor vendedor 
+
+left join quantidade_vendas  
+
+	on vendedor.cdvdd = quantidade_vendas.cdvdd 
+
+ORDER BY 
+
+    quantidade_vendas.quant_vend DESC 
+
+LIMIT 1; 
+ 
+
+-- Exercício de programação 9: E9 
+ 
+with produtos_vendidos as( 
+
+	select vend.nmpro, 
+
+		vend.cdpro, 
+
+		vend.dtven, 
+
+		COUNT(*) as quant_pro 
+
+	from tbvendas vend 
+
+	inner join tbestoqueproduto prod 
+
+		ON prod.cdpro = vend.cdpro 
+
+	where vend.dtven BETWEEN '2014-02-03' and '2018-02-02' 
+
+	and vend.status = 'Concluído' 
+
+	group by vend.nmpro,vend.cdpro, vend.dtven 
+
+) 
+
+SELECT prod_vend.cdpro, 
+
+	prod_vend.nmpro 
+
+FROM produtos_vendidos prod_vend 
+
+order by prod_vend.quant_pro   
+
+limit 1; 
+
+ 
+-- Exercício de programação 10: E10 
+
+SELECT total_vend.nmvdd as vendedor, 
+
+	total_vend.valor_total_vend as valor_total_vendas, 
+
+	ROUND(total_vend.valor_total_vend * tbvendedor.perccomissao/ 100,2) as comissao 
+
+from( 
+
+	SELECT vendedor.cdvdd, 
+
+		vendedor.nmvdd, 
+
+		SUM(vendas.qtd * vendas.vrunt) as valor_total_vend 
+
+	from tbvendedor vendedor 
+
+	left join tbvendas vendas  
+
+		on vendedor.cdvdd  = vendas.cdvdd 
+
+	WHERE vendas.status = 'Concluído' 
+
+	group by vendedor.cdvdd, vendedor.nmvdd 
+
+) as total_vend 
+
+LEFT join tbvendedor  
+
+	on total_vend.cdvdd = tbvendedor.cdvdd 
+
+ORDER by comissao DESC; 
+
+ 
+-- Exercício de programação 11: E11 
+
+SELECT vend.cdcli, 
+
+	vend.nmcli, 
+
+	sum(vend.qtd * vend.vrunt) as gasto 
+
+from tbvendas vend 
+
+where vend.status = 'Concluído' 
+
+group by vend.nmcli, vend.cdcli  
+
+ORDER by gasto DESC 
+
+LIMIT 1; 
+
+
+-- Exercício de programação 12: E12 
+
+SELECT dep.cddep,  
+
+	dep.nmdep, 
+
+	dep.dtnasc, 
+
+	menor_venda.valor_de_venda as valor_total_vendas 
+
+FROM tbdependente dep 
+
+left join tbvendedor  
+
+	on dep.cdvdd = tbvendedor.cdvdd 
+
+left JOIN( 
+
+	SELECT vend.cdvdd, 
+
+	sum(vend.qtd * vend.vrunt) as valor_de_venda 
+
+	from tbvendas vend  
+
+	where vend.status = 'Concluído' 
+
+	group by vend.cdvdd 
+
+	HAVING valor_de_venda > 0 
+
+	order by valor_de_venda asc 
+
+	LIMIT 1 
+
+) as menor_venda  
+
+on tbvendedor.cdvdd = menor_venda.cdvdd 
+
+where tbvendedor.perccomissao > 0 AND  menor_venda.valor_de_venda is not null; 
+
+ 
+
+-- Exercício de programação 13: E13 
+
+SELECT vend.cdpro, 
+
+	vend.nmcanalvendas, 
+
+	vend.nmpro, 
+
+	SUM (vend.qtd) as quantidade_vendas 
+
+from tbvendas vend 
+
+WHERE vend.status = 'Concluído' 
+
+	AND vend.nmcanalvendas IN ('Ecommerce', 'Matriz') 
+
+GROUP BY  vend.cdpro,vend.nmpro, vend.nmcanalvendas 
+
+order by quantidade_vendas 
+
+limit 10; 
+
+ 
+
+-- Exercício de programação 14: E14 
+
+SELECT vend.estado, 
+
+	ROUND(AVG(vend.qtd * vend.vrunt),2) as gastomedio 
+
+from tbvendas vend 
+
+WHERE vend.status = 'Concluído' 
+
+GROUP by vend.estado  
+
+ORDER BY gastomedio DESC; 
+ 
+
+-- Exercício de programação 15: E15 
+
+SELECT vend.cdven  from tbvendas vend 
+
+WHERE vend.deletado = 1; 
+
+
+-- Exercício de programação 16: E16 
+
+SELECT vendas.estado, 
+
+	vendas.nmpro, 
+
+	ROUND(AVG(vendas.qtd), 4) as quantidade_media 
+
+FROM tbvendas vendas 
+
+WHERE vendas.status = 'Concluído' 
+ 
+GROUP BY vendas.estado, vendas.nmpro 
+
+ORDER BY vendas.estado, vendas.nmpro; 
+
