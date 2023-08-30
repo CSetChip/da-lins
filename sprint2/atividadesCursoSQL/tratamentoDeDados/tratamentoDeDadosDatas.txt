@@ -1,0 +1,43 @@
+-- Exercicios ########################################################################
+
+-- (Exercicio 1) Soma de datas utilizando INTERVAL
+-- Calcule a data de hoje mais 10 unidades (dias, semanas, meses, horas)
+
+select current_date + 10
+select (current_date + interval '10 weeks')::date
+select (current_date + interval '10 months')::date
+select current_date + interval '10 hours'
+
+-- (Exercicio 2) Truncagem de datas utilizando DATE_TRUNC
+-- Calcule quantas visitas ocorreram por mês no site da empresa
+
+select visit_page_date, count(*)
+from sales.funnel
+group by visit_page_date
+order by visit_page_date desc
+
+select
+	date_trunc('month', visit_page_date)::date as visit_page_month,
+	count(*)
+from sales.funnel
+group by visit_page_month
+order by visit_page_month desc
+
+-- (Exercicio 3) Extração de unidades de uma data utilizando EXTRACT
+-- Calcule qual é o dia da semana que mais recebe visitas ao site
+
+select
+	extract('dow' from visit_page_date) as dia_da_semana,
+	count(*)
+from sales.funnel
+group by dia_da_semana
+order by dia_da_semana
+
+-- (Exercicio 4) Diferença entre datas com operador de subtração (-) 
+-- Calcule a diferença entre hoje e '2018-06-01', em dias, semanas, meses e anos.
+
+select (current_date - '20180601')
+select (current_date - '20180601')/7
+select (current_date - '20180601')/30
+select (current_date - '20180601')/365
+select datediff('weeks', '20180601', current_date)
