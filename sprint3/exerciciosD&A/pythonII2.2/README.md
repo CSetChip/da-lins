@@ -8,10 +8,6 @@
 - Em "csv" está o arquivo csv selecionado para leitura.
 - Em "etapas_txt" estão os arquivos txt que guardam as informações.
 
-# Ator com Maior Número de Filmes
-
-Este é um projeto Python simples que demonstra como encontrar o ator com o maior número de filmes em um conjunto de dados CSV.
-
 ## Como Usar
 
 1. Certifique-se de ter Python instalado no seu sistema.
