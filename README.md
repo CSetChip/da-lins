@@ -70,6 +70,7 @@ A trilha de D&A-AWS tem como objetivo auxiliar o estagiário a compreender as di
 
 ## Sprints:
 
+- Sprints 1 - Segurança e Metodologias Ágeis
 - Sprints 1 - Git/Github e Linux (02/08/2023 - 16/08/2023)
 - Sprints 2 - SQL e Big Data Fundamental 3.0 (16/08/2023 - 30/08/2023)
 - Sprints 3 - Python 3 I (30/08/2023 - 13/09/2023)
