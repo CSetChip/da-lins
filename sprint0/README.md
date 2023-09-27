@@ -20,4 +20,3 @@
 - Dominar o básico das ferramentas TRELLO e ASANA para utilizá-las em seu dia a dia.
 - Compreender a diferença entre a gestão tradicional e a gestão por meio de métodos ágeis.
 - Assistir ENTREVISTAS EXCLUSIVAS com profissionais renomados na área de métodos ágeis.
-- Assistir ENTREVISTAS EXCLUSIVAS com profissionais renomados na área de métodos ágeis.
