@@ -1,0 +1,38 @@
+dim_generos:
+    id bigint
+    name string
+
+dim_series:
+    id bigint
+    name string
+    original_language string
+    origin_country array<string>
+    first_air_date date
+    original_name string
+    overview string
+    genre_ids array<bigint>
+
+dim_time
+    date date
+    season string
+    time_id bigint
+
+dim_trend:
+    id bigint
+    name string
+    media_type string
+    first_air_date date
+
+fato_series_popularity:
+    id bigint
+    time_id bigint
+    anoint
+    popularitydouble
+    vote_count bigint
+    vote_average double
+
+fato_series_trend_genre:
+    dim_series_id bigint
+    dim_trend_id bigint
+    genre_id bigint
+

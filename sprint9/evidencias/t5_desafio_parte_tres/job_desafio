@@ -1,0 +1,72 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from pyspark.sql.functions import col, date_trunc, year, month, when, monotonically_increasing_id, explode
+from pyspark.sql import SparkSession
+
+## @params: [JOB_NAME]
+args = getResolvedOptions(sys.argv, ['JOB_NAME', 'S3_INPUT_PATH_SERIES', 'S3_INPUT_PATH_GENEROS', 'S3_INPUT_PATH_POPULARIDADE', 'S3_INPUT_PATH_TENDENCIA', 'S3_TARGET_PATH'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+df_series = spark.read.parquet(args['S3_INPUT_PATH_SERIES'])
+df_generos = spark.read.parquet(args['S3_INPUT_PATH_GENEROS'])
+df_popularidade = spark.read.parquet(args['S3_INPUT_PATH_POPULARIDADE'])
+df_tendencia = spark.read.parquet(args['S3_INPUT_PATH_TENDENCIA'])
+
+dim_series = df_series.select("id", "name", "original_language", "origin_country", "first_air_date", "original_name", "overview", "genre_ids")
+dim_generos = df_generos.select("id", "name")
+dim_trend = df_tendencia.select("id", "name", "media_type", "first_air_date")
+
+dim_time = (df_series.select(
+        col('first_air_date').alias('date'),
+        when((month(col('first_air_date')).between(1, 3)), 'Inverno').when((month(col('first_air_date')).between(4, 6)), 'Primavera')
+        .when((month(col('first_air_date')).between(7, 9)), 'Verão').otherwise('Outono').alias('season'))
+    .distinct().withColumn('time_id', monotonically_increasing_id())  
+)
+
+dim_series.createOrReplaceTempView("dim_series")
+df_series.createOrReplaceTempView("series")
+dim_time.createOrReplaceTempView("dim_time")
+
+fato_series_popularity = spark.sql("""
+    SELECT 
+        ds.id,
+        dt.time_id,
+        YEAR(ds.first_air_date) AS ano,
+        s.popularity,
+        s.vote_count,
+        s.vote_average
+    FROM dim_series ds
+    JOIN dim_time dt ON ds.first_air_date = dt.date
+    JOIN series s ON ds.id = s.id
+    GROUP BY ds.id, dt.time_id, YEAR(ds.first_air_date), s.popularity, s.vote_count, s.vote_average;
+""")
+
+fato_series_trend_genre = dim_series.alias("ds") \
+    .join(dim_trend.alias("dt"), col("ds.id") == col("dt.id")) \
+    .withColumn("genre_id", explode("ds.genre_ids")) \
+    .join(dim_generos.alias("g"), col("g.id") == col("genre_id")) \
+    .select(
+        col("ds.id").alias("dim_series_id"),
+        col("dt.id").alias("dim_trend_id"),
+        col("g.id").alias("genre_id")
+    )
+
+dim_series.write.parquet(f"{args['S3_TARGET_PATH']}/dim_series")
+dim_generos.write.parquet(f"{args['S3_TARGET_PATH']}/dim_generos")
+dim_trend.write.parquet(f"{args['S3_TARGET_PATH']}/dim_trend")
+dim_time.write.parquet(f"{args['S3_TARGET_PATH']}/dim_time")
+fato_series_popularity.write.parquet(f"{args['S3_TARGET_PATH']}/fato_series_popularity")
+fato_series_trend_genre.write.parquet(f"{args['S3_TARGET_PATH']}/fato_series_trend_genre")
+
+
+job.commit()
+

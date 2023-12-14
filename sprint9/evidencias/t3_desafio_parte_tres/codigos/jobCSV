@@ -1,0 +1,45 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from pyspark.context import SparkContext
+from awsglue.dynamicframe import DynamicFrame
+from pyspark.sql.functions import col
+
+args = getResolvedOptions(sys.argv, ['JOB_NAME', 'S3_INPUT_PATH_SERIES', 'S3_INPUT_PATH_MOVIES', 'S3_TARGET_PATH'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+target_path = args['S3_TARGET_PATH']
+input_paths = {'series': args['S3_INPUT_PATH_SERIES'], 'movies': args['S3_INPUT_PATH_MOVIES']}
+int_cols = ['anoLancamento', 'anoTermino', 'tempoMinutos', 'numeroVotos', 'anoNascimento', 'anoFalecimento']
+
+for data_type, source_file in input_paths.items():
+    df = spark.read.format("csv").option("header", "true").option("sep", "|").load(source_file)
+    
+    for col_name in int_cols:
+        if col_name in df.columns:
+            df = df.withColumn(col_name, col(col_name).cast('int'))
+
+    df = df.withColumn("notaMedia", col("notaMedia").cast("float"))
+    df = df.dropna() 
+    df = df.dropDuplicates(['id', 'titulopincipal'])
+    
+    df = df.coalesce(1)
+    dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")
+    
+    output_path = f"{target_path}/local/{data_type}"
+    glueContext.write_dynamic_frame_from_options(
+        frame=dynamic_frame,
+        connection_type="s3",
+        connection_options={"path": output_path},
+        format="parquet"
+    )
+
+job.commit()
+

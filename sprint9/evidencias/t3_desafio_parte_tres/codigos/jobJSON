@@ -1,0 +1,47 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.sql.functions import col, to_date, current_date
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from awsglue.dynamicframe import DynamicFrame
+
+## @params: [JOB_NAME]
+args = getResolvedOptions(sys.argv, ['JOB_NAME', 'S3_INPUT_PATH_SERIES', 'S3_INPUT_PATH_GENEROS', 'S3_INPUT_PATH_POPULARIDADE', 'S3_INPUT_PATH_TENDENCIA', 'S3_TARGET_PATH'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+target_path = args['S3_TARGET_PATH']
+
+input_paths = {'series': args['S3_INPUT_PATH_SERIES'],'generos': args['S3_INPUT_PATH_GENEROS'],'popularidade': args['S3_INPUT_PATH_POPULARIDADE'],'tendencia': args['S3_INPUT_PATH_TENDENCIA']}
+
+for data_type, source_file in input_paths.items():
+    df = spark.read.json(source_file)
+    df = df.dropna()
+    df = df.dropDuplicates()
+    
+    renamed_columns = [col(c).alias(c.replace(" ", "_")) for c in df.columns]
+    df = df.select(*renamed_columns)
+    
+    if 'first_air_date' in df.columns:
+        df = df.withColumn("first_air_date", to_date(col("first_air_date"), "yyyy-MM-dd"))
+        df = df.filter(col("first_air_date") <= current_date())
+    
+    df = df.coalesce(1)
+    dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")
+    
+    output_path = f"{target_path}/tmdb/{data_type}"
+    glueContext.write_dynamic_frame_from_options(
+        frame=dynamic_frame,
+        connection_type="s3",
+        connection_options={"path": output_path},
+        format="parquet"
+    )
+
+job.commit()
+
