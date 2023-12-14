@@ -10,7 +10,3 @@
  - Aws Glue.
  - Athena.
  - S3.
-
-
-### Observação: Alguns arquivos estão compactados por serem grandes demais
-
