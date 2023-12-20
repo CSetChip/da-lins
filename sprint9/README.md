@@ -5,7 +5,7 @@
 
 🧠 Abaixo está presente uma lista dos conhecimentos que mais absorvi durante a trilha 🧠
 
-##  Servoços AWS
+##  Serviços AWS
 
  - Aws Glue.
  - Athena.
