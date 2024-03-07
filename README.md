@@ -81,6 +81,7 @@ A trilha de D&A-AWS tem como objetivo auxiliar o estagiário a compreender as di
 - Sprints 8 - AWS - Tutoriais Técnicos - Analytics (08/11/2023 - 22/11/2023)
 - Sprints 9 - Atividade Prática (22/11/2023 - 06/12/2023)
 - Sprints 10 - Introdução completa ao AWS QuickSight e Workshop de QuickSight para Autores (06/12/2023 - 20/12/2023)
+- Certificação AWS Certified Cloud Practitioner
 
 ## 💖 Agradecimento 🥰
 
